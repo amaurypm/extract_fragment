@@ -28,5 +28,5 @@ position:            1 neighbors:          100
 ```
 
 ## Output
-PDB files containing the fragments. If the sequence from the PDB does not corerspond with the sequence specified in the fragment file a warning will be printed and not PDB will be saved (it happens, a lot, almost for half the fragments. I don't know why)
+PDB files containing the fragments. If the sequence from the PDB does not correspond with the sequence specified in the fragment file a warning will be printed and not PDB will be saved (it happens, a lot, almost for half the fragments. I don't know why)
 
