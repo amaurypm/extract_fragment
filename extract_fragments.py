@@ -94,7 +94,7 @@ def main():
     """Main function.
     """
     parser=argparse.ArgumentParser(description="Extract Rosetta fragments from PDB, using pymol as a library.")
-    parser.add_argument('fragment_file', nargs='+', help='Fragment file from Rosetta. The filename is usually in the form seq_name.N.nmers, where seq_name is the name of your sequences, N the number of selected fragments and n the length of the fragments/')
+    parser.add_argument('fragment_file', nargs='+', help='Fragment file from Rosetta. The filename is usually in the form seq_name.N.nmers, where seq_name is the name of your sequence, N the number of selected fragments and n the length of the fragments.')
     parser.add_argument('-v', '--version', action='version', version='0.1.0', help="Show program's version number and exit.")
 
     args=parser.parse_args()
