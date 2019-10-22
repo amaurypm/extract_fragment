@@ -84,11 +84,18 @@ def write_pdb(frag_name, frag_val):
             if seq_record.seq:
                 if seq_record.seq == seq:
                     cmd.save(out_filename, "fragment")
+                    renumb_pdb(out_filename, resi1) # Renumbing fragment from 1 to fragment length.
                 else:
                     sys.stderr.write("WARNING: Sequence from PDB ({}) does not correspond to the fragment sequence ({})\nIgnoring this fragment ({} {} from {:d} to {:d})\n".format(seq_record.seq, seq, pdb_id, chain_id, resi1, resi2))
             else:
                 sys.stderr.write("WARNING: Empty sequence from PDB {} chain {} residues from {:d} to {:d}. Probably HETATM or inexistent region. Ignoring fragment.\n".format(pdb_id, chain_id, resi1, resi2))
                     
+def renumb_pdb(filename, resi1):
+    cmd.reinitialize()
+    cmd.load(filename, "fragment")
+    cmd.alter("all", "resi=str(int(resi)-{:d}+1)".format(resi1))
+    cmd.save(filename, "all")
+
 ## Main
 def main():
     """Main function.
