@@ -82,13 +82,13 @@ def write_pdb(frag_name, frag_val):
         tmp_file.seek(0)
         for seq_record in SeqIO.parse(tmp_file, "fasta"):
             if seq_record.seq:
-                if seq_record.seq != seq:
+                if seq_record.seq == seq:
+                    cmd.save(out_filename, "fragment")
+                else:
                     sys.stderr.write("WARNING: Sequence from PDB ({}) does not correspond to the fragment sequence ({})\nIgnoring this fragment ({} {} from {:d} to {:d})\n".format(seq_record.seq, seq, pdb_id, chain_id, resi1, resi2))
-                    return
-
-
-    cmd.save(out_filename, "fragment")
-
+            else:
+                sys.stderr.write("WARNING: Empty sequence from PDB {} chain {} residues from {:d} to {:d}. Probably HETATM or inexistent region. Ignoring fragment.\n".format(pdb_id, chain_id, resi1, resi2))
+                    
 ## Main
 def main():
     """Main function.
